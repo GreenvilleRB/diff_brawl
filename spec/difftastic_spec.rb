@@ -36,18 +36,3 @@ describe Difftastic do
     #@diff.write.should == File.open('examples/diff') { |x| x.read }
   end
 end
-
-describe Difftastic, ' temporary tests' do
-  before(:each) do
-    @f1 = 'examples/file_1.rb'
-    @f2 = 'examples/file_2.rb'
-    @diff = Difftastic.new
-    @raw = [{:"1"=>:"1"}, {nil=>:"2"}, {nil=>:"3"}, {nil=>:"4"}, {nil=>:"5"}, {:"6"=>:"4"}]
-  end
-
-  it 'my refactoring does not mess up Mason\'s output' do
-    @diff.compare(@f1, @f2).should == @raw
-  end
-
-end
-
