@@ -32,8 +32,6 @@ class Difftastic
       x += 1
 
     end
-    
-    puts @diff_hash
   end
 
   def write
@@ -41,6 +39,3 @@ class Difftastic
   end
 
 end
-
-a = Difftastic.new
-a.compare("examples/file_1.rb","examples/file_2.rb")
