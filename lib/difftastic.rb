@@ -13,12 +13,11 @@ class Difftastic
     count1 = original.lines.count
     count2 = modified.lines.count
 
-    x = 1
-   
-    original.each_line do |line|
+    original.each_line.with_index do |line, i|
       temp1 = line
-      y = 1
-      modified.each_line do |line|
+      x = i + 1
+      modified.each_line.with_index do |line, index|
+        y = index + 1
         #puts "#{line} *#{y}*"
         temp2 = line
         if temp1 == temp2
@@ -30,10 +29,8 @@ class Difftastic
           #puts "Second Condition... #{x}: #{temp1.dump} != #{y}: #{temp2.dump}"
         else 
           #puts "Third Condition... #{x}: #{temp1.dump} != #{y}: #{temp2.dump}"
-          y+=1
         end
       end 
-      x += 1
 
     end
 
