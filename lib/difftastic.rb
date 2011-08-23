@@ -27,10 +27,10 @@ class Difftastic
       modified.each_line.with_index do |m_line, index|
         y = index + 1
         if o_line == m_line
-          @diff_hash << {x.to_s.to_sym => y.to_s.to_sym}
+          @diff_hash << {x => y}
           break
         elsif y == count2
-          @diff_hash << {nil => x.to_s.to_sym}
+          @diff_hash << {nil => x}
         end
       end 
     end
