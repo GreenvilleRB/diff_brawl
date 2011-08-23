@@ -1,0 +1,8 @@
+2,5c2,3
+<   ass-= 1
+< end
+< def your_mom
+<   ugly += 500
+---
+>   ass -= 2
+>   alert 'ouch'

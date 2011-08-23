@@ -1,21 +1,16 @@
 require 'spec_helper'
-require 'diff'
+require 'difftastic'
 
-describe Difftastic, "something" do
+describe Difftastic do
   before(:each) do
-    f = "def kick_ass
-      ass-= 1
-    end
-    def your_mom
-      ugly += 500
-    end"
-    f2 = "def kick_ass
-      ass -= 2
-      alert 'ouch'
-    end"
-
+    f1 = File.open('examples/file_1.rb') { |x| x.read }
+    f2 = File.open('examples/file_2.rb') { |x| x.read }
     @diff = Difftastic.new
-    @diff.file1 = f
-    @diff.file2 = f2
   end
+
+  it "#write yields a pretty-printed output" do
+    @diff.write.should == File.open('examples/diff') { |x| x.read }
+  end
+
+
 end
