@@ -13,22 +13,20 @@ class Difftastic
     count1 = original.lines.count
     count2 = modified.lines.count
 
-    original.each_line.with_index do |line, i|
-      temp1 = line
+    original.each_line.with_index do |o_line, i|
       x = i + 1
-      modified.each_line.with_index do |line, index|
+      modified.each_line.with_index do |m_line, index|
         y = index + 1
         #puts "#{line} *#{y}*"
-        temp2 = line
-        if temp1 == temp2
+        if o_line == m_line
           @diff_hash << {x.to_s.to_sym => y.to_s.to_sym}
-          #puts "First Condition... #{x}: #{temp1.dump} == #{y}: #{temp2.dump}"
+          #puts "First Condition... #{x}: #{o_line.dump} == #{y}: #{m_line.dump}"
           break
         elsif y == count2
           @diff_hash << {nil => x.to_s.to_sym}
-          #puts "Second Condition... #{x}: #{temp1.dump} != #{y}: #{temp2.dump}"
+          #puts "Second Condition... #{x}: #{o_line.dump} != #{y}: #{m_line.dump}"
         else 
-          #puts "Third Condition... #{x}: #{temp1.dump} != #{y}: #{temp2.dump}"
+          #puts "Third Condition... #{x}: #{o_line.dump} != #{y}: #{line.dump}"
         end
       end 
 
