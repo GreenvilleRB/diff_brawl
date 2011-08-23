@@ -13,23 +13,26 @@ class Difftastic
     count1 = original.lines.count
     count2 = modified.lines.count
 
+    # Cycle through the original file, line by line.  At each line,
+    # cycle through the modified file, line by line.  At each line of
+    # the second file, ask two questions.  'Is the current line of the
+    # first file identical to the current line of the second?' If so,
+    # push a hash with those line numbers onto @diff_hash.  If not, ask
+    # the second question: 'Is the current line number (in the second
+    # file) equal to the length of the current file?'  If so, we know
+    # this line isn't matched, put a nil in its place in our array of
+    # hashes.
     original.each_line.with_index do |o_line, i|
       x = i + 1
       modified.each_line.with_index do |m_line, index|
         y = index + 1
-        #puts "#{line} *#{y}*"
         if o_line == m_line
           @diff_hash << {x.to_s.to_sym => y.to_s.to_sym}
-          #puts "First Condition... #{x}: #{o_line.dump} == #{y}: #{m_line.dump}"
           break
         elsif y == count2
           @diff_hash << {nil => x.to_s.to_sym}
-          #puts "Second Condition... #{x}: #{o_line.dump} != #{y}: #{m_line.dump}"
-        else 
-          #puts "Third Condition... #{x}: #{o_line.dump} != #{y}: #{line.dump}"
         end
       end 
-
     end
 
     @diff_hash
