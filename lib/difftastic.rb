@@ -7,8 +7,6 @@ class Difftastic
   def compare(file1, file2)
     count1 = File.foreach(file1).inject(0) {|c, line| c+1}
     count2 = File.foreach(file2).inject(0) {|c, line| c+1}
-    puts count1
-    puts count2
     x = 1
    
     IO.foreach(file1) do |line| 
@@ -19,13 +17,13 @@ class Difftastic
         temp2 = line
         if temp1 == temp2
           @diff_hash << {x.to_s.to_sym => y.to_s.to_sym}
-          puts "First Condition... #{x}: #{temp1.dump} == #{y}: #{temp2.dump}"
+          #puts "First Condition... #{x}: #{temp1.dump} == #{y}: #{temp2.dump}"
           break
         elsif y == count2
           @diff_hash << {nil => x.to_s.to_sym}
-          puts "Second Condition... #{x}: #{temp1.dump} != #{y}: #{temp2.dump}"
+          #puts "Second Condition... #{x}: #{temp1.dump} != #{y}: #{temp2.dump}"
         else 
-          puts "Third Condition... #{x}: #{temp1.dump} != #{y}: #{temp2.dump}"
+          #puts "Third Condition... #{x}: #{temp1.dump} != #{y}: #{temp2.dump}"
           y+=1
         end
       end 
