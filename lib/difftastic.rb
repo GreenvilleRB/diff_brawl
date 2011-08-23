@@ -17,11 +17,13 @@ class Difftastic
     # cycle through the modified file, line by line.  At each line of
     # the second file, ask two questions.  'Is the current line of the
     # first file identical to the current line of the second?' If so,
-    # push a hash with those line numbers onto @diff_hash.  If not, ask
-    # the second question: 'Is the current line number (in the second
-    # file) equal to the length of the current file?'  If so, we know
-    # this line isn't matched, put a nil in its place in our array of
-    # hashes.
+    # push a hash with those line numbers onto @diff_hash and move on to
+    # the next line of the original file.  If not, ask the second
+    # question: 'Is the current line number (in the second file) equal
+    # to the length of the current file?'  If so, we know this line
+    # isn't matched, put a nil in its place in our array of hashes and
+    # put, as its value in the hash, the line number of the original
+    # file.
     original.each_line.with_index do |o_line, i|
       x = i + 1
       modified.each_line.with_index do |m_line, index|
