@@ -1,6 +1,24 @@
 require 'spec_helper'
 require 'difftastic'
 
+describe Difftastic, " private methods" do
+  class Difftastic
+    public :read_input
+  end
+
+  it 'let me read a string' do
+    diff = Difftastic.new
+    diff.read_input('random string').should == 'random string'
+  end
+
+  it 'let me read a file' do
+    diff = Difftastic.new
+    f = File.open('examples/file_1.rb') { |x| x.read }
+    diff.read_input('examples/file_1.rb').should == f
+  end
+end
+
+
 describe Difftastic do
   before(:each) do
     f1 = File.open('examples/file_1.rb') { |x| x.read }

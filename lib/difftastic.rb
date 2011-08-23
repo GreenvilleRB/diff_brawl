@@ -1,5 +1,7 @@
 class Difftastic
 
+  attr_reader :diff_hash
+
   def initialize()
     @diff_hash = []
   end
@@ -36,6 +38,12 @@ class Difftastic
 
   def write
     @diff_hash
+  end
+
+  private
+
+  def read_input(stream)
+    File.exists?( stream ) ? File.open( stream ) { |c| c.read } : stream
   end
 
 end
