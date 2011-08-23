@@ -1,7 +1,5 @@
 class Difftastic
 
-  #attr_accessor :file1, :file2
-
   def initialize()
     @diff_hash = []
   end
@@ -36,7 +34,10 @@ class Difftastic
     end
     
     puts @diff_hash
+  end
 
+  def write
+    @diff_hash
   end
 
 end
