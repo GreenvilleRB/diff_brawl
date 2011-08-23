@@ -7,14 +7,18 @@ class Difftastic
   end
 
   def compare(file1, file2)
-    count1 = File.foreach(file1).inject(0) {|c, line| c+1}
-    count2 = File.foreach(file2).inject(0) {|c, line| c+1}
+    original = read_input(file1)
+    modified = read_input(file2)
+
+    count1 = original.lines.count
+    count2 = modified.lines.count
+
     x = 1
    
-    IO.foreach(file1) do |line| 
+    original.each_line do |line|
       temp1 = line
       y = 1
-      IO.foreach(file2) do |line| 
+      modified.each_line do |line|
         #puts "#{line} *#{y}*"
         temp2 = line
         if temp1 == temp2
