@@ -32,6 +32,8 @@ class Difftastic
       x += 1
 
     end
+
+    @diff_hash
   end
 
   def write
